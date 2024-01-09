@@ -35,7 +35,7 @@ def send_mail(sender_email, sender_app_password, title, html_content, receiver_e
         finally:
             server.quit()
         
-        # time.sleep()
+        time.sleep(0.2)
     return 'done'
 
 
