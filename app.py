@@ -7,9 +7,6 @@ from email import encoders
 import pandas as pd
 import time
 
-hskf trcp znzx tboz
-tna_taipei!klook_8944675
-
 def send_mail(sender_email, sender_app_password, title, html_content, receiver_emails):
 
     for receiver_email in receiver_emails:
