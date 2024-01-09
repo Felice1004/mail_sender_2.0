@@ -5,8 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 import pandas as pd
-
-# tna_taipei!klook_8944675
+import time
 
 def send_mail(sender_email, sender_app_password, title, html_content, receiver_emails):
 
@@ -34,6 +33,8 @@ def send_mail(sender_email, sender_app_password, title, html_content, receiver_e
             print(f"Error: {e}")
         finally:
             server.quit()
+        
+        time.sleep(1)
     return 'done'
 
 
