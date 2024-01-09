@@ -37,34 +37,3 @@ def convert_df(df):
 
 def get_timestamp():
    return datetime.now().strftime("%Y%m%d%H%M%S")
-
-if __name__ == '__main__':
-
-    df = pd.DataFrame({"place_id": ["111", "111", "111", "111", "555",
-                            "666", "777", "888", "999"],
-                    "lang": ["en", "zh", "ja", "ko", "two",
-                            "one", "one", "two", "two"],
-                    "phone": ["09187", "09187", "09187", "09187",
-                            "-", "-", "-", "-",
-                            "large"],
-                    "lang_count": [1, 2, 2, 3, 3, 4, 5, 6, 7],
-                    })
-
-    df = pd.read_csv('file (4).csv')
-
-    pv = pivottable(df, 'lang_count', 'place_id', 'lang_x', np.sum)
-    # print(pv)
-    df = df.drop_duplicates(subset='place_id')
-    # print(df)
-
-    merged_df = pd.merge(df, pv, on='place_id', how='left')
-    merged_df = merged_df.drop(columns=['lang_x', 'lang_count'])
-    print(merged_df)
-
-    merged_df.to_csv('merged_df_test.csv', index=False)
-
-
-    text = 'いいサービスですね 服務很好'
-    print(hanzidentifier.has_chinese(text))
-    print(hanzidentifier.is_simplified(text))
-
