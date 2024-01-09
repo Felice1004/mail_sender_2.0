@@ -34,6 +34,7 @@ def send_mail(sender_email, sender_app_password, title, html_content, receiver_e
             print(f"Error: {e}")
         finally:
             server.quit()
+    return 'done'
 
 
 st.title('Send e-mail!')
@@ -70,4 +71,8 @@ if receiver_emails is not None:
     st.warning(f'Click the button below to send the mail to {len(dataframe)} merchants')
     if st.button(label='send mail', type='primary'):
         if validation == 'tna_taipei!klook_8944675':
-            send_mail(sender_email, sender_app_password, mail_subject, html_file, dataframe['receiver_email'].tolist())
+            progress = send_mail(sender_email, sender_app_password, mail_subject, html_file, dataframe['receiver_email'].tolist())
+            if progress == 'done':
+                st.balloons()
+                st.success('done!', icon=None)
+
