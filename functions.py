@@ -1,28 +1,8 @@
 import pandas as pd
 import numpy as np
-import hanzidentifier
 import pickle
 import os 
 from datetime import datetime, timedelta
-from apify_client import ApifyClient
-
-
-def run_apify(api_key, urls, reviews_count,  test_apifyapi):
-    client = ApifyClient(api_key)
-    # Run the actor and wait for it to finish
-    print(urls)
-    run_input = {
-        "language": "en",
-        "maxReviews": reviews_count,
-        "personalData":False,
-        "startUrls": urls,
-        "reviewsSort": "newest"
-
-    }
-    run = None
-    if not test_apifyapi:
-        run = client.actor("compass/google-maps-reviews-scraper").call(run_input=run_input)
-    return run, client
 
 
 def get_config_param(name):
