@@ -22,18 +22,24 @@ def send_mail(sender_email, sender_app_password, title, html_content, receiver_e
         # Send the email
         try:
             # Establish a secure session with Gmail's outgoing SMTP server using your gmail account
-            server = smtplib.SMTP('smtp.gmail.com')
-            server.connect('smtp.gmail.com', '587')
+            server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()  # Secure the connection
             server.login(sender_email, sender_app_password)
 
             # Send email
             server.send_message(msg)
+            # server.sendmail(sender_email, receiver_email, msg)
+
             print("Email sent successfully")
+
+            server.quit()
         except Exception as e:
             print(f"Error: {e}")
-        finally:
-            server.quit()
+            try:
+                server.quit()
+            except Exception as e:
+                print(f"Error: {e}")
+                print('not able to quit server')
         
         time.sleep(0.2)
     return 'done'
@@ -72,7 +78,7 @@ if html_file is not None:
 if receiver_emails is not None:
     st.warning(f'Click the button below to send the mail to {len(dataframe)} merchants')
     if st.button(label='send mail', type='primary'):
-        if validation == 'tna_taipei!klook_8944675':
+        if validation == st.secrets['password']:
             progress = send_mail(sender_email, sender_app_password, mail_subject, html_file, dataframe['receiver_email'].tolist())
             if progress == 'done':
                 st.balloons()
