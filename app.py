@@ -55,6 +55,7 @@ validation = st.text_input('the magic words to make this work')
 mail_subject = st.text_input('mail_subject',placeholder='Dear merchant...')
 sender_email = st.text_input('sender_email (only gmail is allowed!)',placeholder='xxxxxx@gmail.com')
 sender_app_password = st.text_input('sender app password',placeholder='xxxx xxxx xxxx xxxx')
+st.info('Reference: Sign in with app passwords https://support.google.com/mail/answer/185833?hl=en')
 
 receiver_emails = st.file_uploader(label='receiver_emails / accepted format: .csv',type='csv')
 with open('static/receiver_emails_example.csv') as f:
